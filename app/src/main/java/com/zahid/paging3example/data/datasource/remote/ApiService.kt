@@ -6,14 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-
-
     @GET("list")
     suspend fun fetchImages(
         @Query("page") page: Int,
         @Query("limit") limit: Int
-    ) : Response<List<ImageListModel>>
-
-
-
+    ): Response<List<ImageListModel>>
 }

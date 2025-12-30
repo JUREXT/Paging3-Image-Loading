@@ -34,7 +34,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import com.zahid.paging3example.data.datasource.model.ImageListModel
 import com.zahid.paging3example.ui.theme.Paging3ExampleTheme
-import kotlinx.coroutines.flow.shareIn
 
 
 @Composable
@@ -42,13 +41,13 @@ fun ShowImageListScreen(
     navController: NavHostController,
     viewModel: ImageListViewModel
 ) {
-    val viewState by viewModel.viewState.collectAsStateWithLifecycle()
+    //val viewState by viewModel.viewState.collectAsStateWithLifecycle()
     val imageListItems = viewModel.getImageList.collectAsLazyPagingItems()
 
     LaunchedEffect(Unit) {
         viewModel.viewEvent.collect { action ->
             when(action) {
-                ImageListViewEvent.refreshData -> imageListItems.refresh()
+                ImageListViewEvent.RefreshData -> imageListItems.refresh()
             }
         }
     }
@@ -83,7 +82,7 @@ fun ShowMainHomePage(
                             .fillMaxSize(),
                     ) {
                         items(imageListItems!!.itemCount) { item ->
-                            var itemValue = imageListItems[item]
+                            val itemValue = imageListItems[item]
                             Card(
                                 modifier = Modifier
                                     .padding(10.dp)

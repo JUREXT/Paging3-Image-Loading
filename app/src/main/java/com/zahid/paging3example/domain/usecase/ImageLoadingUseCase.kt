@@ -9,7 +9,6 @@ import javax.inject.Inject
 class ImageLoadingUseCase @Inject constructor(
     private val imageRepository: ImageRepository
 ) {
-
     fun fetchImages(): Flow<PagingData<ImageListModel>> {
         return imageRepository.getImages(
             pageSize = 20,
@@ -19,5 +18,4 @@ class ImageLoadingUseCase @Inject constructor(
             maxCacheSize = 2000
         )
     }
-
 }
